@@ -1,0 +1,14 @@
+# API Keys
+Layman/Config/Config.xcconfig
+
+# Xcode
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+
+# Build
+DerivedData/
+build/
