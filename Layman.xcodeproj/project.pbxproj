@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F02A6D9C2F7D78AD006FFC18 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = F02A6D9B2F7D78AD006FFC18 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F02A6D252F7D220E006FFC18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02A6D9C2F7D78AD006FFC18 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = Layman;
 			packageProductDependencies = (
+				F02A6D9B2F7D78AD006FFC18 /* Supabase */,
 			);
 			productName = Layman;
 			productReference = F02A6D172F7D220E006FFC18 /* Layman.app */;
@@ -603,6 +609,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F02A6D9B2F7D78AD006FFC18 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F02A6D412F7D4A76006FFC18 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F02A6D0F2F7D220E006FFC18 /* Project object */;
 }

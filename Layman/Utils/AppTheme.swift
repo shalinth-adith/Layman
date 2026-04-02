@@ -14,6 +14,19 @@ enum AppTheme {
     )
 }
 
+struct AppFontModifier: ViewModifier {
+    let font: SwiftUI.Font
+    func body(content: Content) -> some View {
+        content.font(font)
+    }
+}
+
+extension View {
+    func appFont(size: CGFloat, weight: SwiftUI.Font.Weight = .regular, design: SwiftUI.Font.Design = .default) -> some View {
+        modifier(AppFontModifier(font: SwiftUI.Font.system(size: size, weight: weight, design: design)))
+    }
+}
+
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
