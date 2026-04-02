@@ -34,9 +34,12 @@ class SupabaseService {
 
     // MARK: - Saved Articles
     func saveArticle(_ article: Article) async throws {
-        let userID = currentUser?.id.uuidString ?? "anonymous"
+        guard let userID = currentUser?.id else {
+            print("No logged in user — cannot save article")
+            return
+        }
         let row = SavedArticleRow(
-            userID: userID,
+            userID: userID.uuidString,
             articleID: article.id,
             title: article.title,
             description: article.description,
@@ -59,20 +62,20 @@ class SupabaseService {
     }
 
     func deleteArticle(articleID: String) async throws {
-        let userID = currentUser?.id.uuidString ?? "anonymous"
+        guard let userID = currentUser?.id else { return }
         try await client.from("saved_articles")
             .delete()
             .eq("article_id", value: articleID)
-            .eq("user_id", value: userID)
+            .eq("user_id", value: userID.uuidString)
             .execute()
     }
 
     func isArticleSaved(articleID: String) async -> Bool {
-        let userID = currentUser?.id.uuidString ?? "anonymous"
+        guard let userID = currentUser?.id else { return false }
         let result = try? await client.from("saved_articles")
             .select()
             .eq("article_id", value: articleID)
-            .eq("user_id", value: userID)
+            .eq("user_id", value: userID.uuidString)
             .execute()
             .value as [SavedArticleRow]
         return !(result?.isEmpty ?? true)

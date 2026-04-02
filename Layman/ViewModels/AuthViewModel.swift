@@ -32,6 +32,7 @@ class AuthViewModel: ObservableObject {
             try await SupabaseService.shared.signUp(email: email, password: password)
             isAuthenticated = true
         } catch {
+            print("Signup error: \(error)")
             errorMessage = error.localizedDescription
         }
         isLoading = false

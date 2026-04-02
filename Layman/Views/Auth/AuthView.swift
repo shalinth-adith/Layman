@@ -98,9 +98,6 @@ struct AuthView: View {
             }
         }
         .navigationBarHidden(true)
-        .navigationDestination(isPresented: $viewModel.isAuthenticated) {
-            MainTabView()
-        }
     }
 
     @ViewBuilder
@@ -121,10 +118,13 @@ struct AuthView: View {
         Group {
             if isSecure {
                 SecureField(placeholder, text: text)
+                    .textContentType(.oneTimeCode)
             } else {
                 TextField(placeholder, text: text)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
+                    .autocorrectionDisabled(true)
+                    .textContentType(.emailAddress)
             }
         }
         .appFont(size: 15, weight: .regular)

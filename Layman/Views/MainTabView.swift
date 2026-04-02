@@ -10,7 +10,7 @@ struct MainTabView: View {
                 switch selectedTab {
                 case 0: HomeView()
                 case 1: SavedView()
-                case 2: Text("Profile").frame(maxWidth: .infinity, maxHeight: .infinity)
+                case 2: ProfileView()
                 default: HomeView()
                 }
             }
