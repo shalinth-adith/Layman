@@ -20,7 +20,7 @@ class GroqService {
         """
 
         let body: [String: Any] = [
-            "model": "llama3-8b-8192",
+            "model": "llama-3.1-8b-instant",
             "messages": [
                 ["role": "user", "content": prompt]
             ],
@@ -35,6 +35,7 @@ class GroqService {
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         let (data, _) = try await URLSession.shared.data(for: request)
+
         let response = try JSONDecoder().decode(GroqResponse.self, from: data)
         let text = response.choices.first?.message.content ?? ""
 
@@ -62,7 +63,7 @@ class GroqService {
         """
 
         let body: [String: Any] = [
-            "model": "llama3-8b-8192",
+            "model": "llama-3.1-8b-instant",
             "messages": [["role": "user", "content": prompt]],
             "temperature": 0.7,
             "max_tokens": 150
@@ -100,7 +101,7 @@ class GroqService {
         }
 
         let body: [String: Any] = [
-            "model": "llama3-8b-8192",
+            "model": "llama-3.1-8b-instant",
             "messages": apiMessages,
             "temperature": 0.7,
             "max_tokens": 100

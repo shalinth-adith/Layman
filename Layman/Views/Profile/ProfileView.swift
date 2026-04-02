@@ -88,7 +88,7 @@ struct ProfileView: View {
                         Divider().padding(.horizontal, 16)
                         infoRow(icon: "globe", title: "Category", value: "Business · Tech · Startups")
                         Divider().padding(.horizontal, 16)
-                        infoRow(icon: "brain.fill", title: "AI Model", value: "Groq llama3-8b")
+                        infoRow(icon: "brain.fill", title: "AI Model", value: "Groq llama-3.1-8b")
                     }
 
                     // Sign out

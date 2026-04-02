@@ -17,6 +17,7 @@ class ArticleDetailViewModel: ObservableObject {
                 content: content
             )
         } catch {
+
             contentCards = [
                 article.description ?? article.title,
                 "Tap 'Ask Layman' to learn more about this story.",

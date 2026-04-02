@@ -43,6 +43,7 @@ class ChatViewModel: ObservableObject {
             let reply = try await GroqService.shared.chat(messages: messages, articleContext: context)
             messages.append(ChatMessage(role: .assistant, content: reply))
         } catch {
+
             messages.append(ChatMessage(role: .assistant, content: "Sorry, I couldn't get a response. Try again!"))
         }
         isLoading = false

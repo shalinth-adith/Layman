@@ -13,11 +13,11 @@ struct WelcomeView: View {
             ZStack {
                 LinearGradient(
                     stops: [
-                        .init(color: AppTheme.gradientEnd, location: 0.0),
+                        .init(color: Color(hex: "#F0A882"), location: 0.0),
                         .init(color: AppTheme.gradientStart, location: 0.3),
                         .init(color: Color(hex: "#FFF8F4"), location: 0.5),
                         .init(color: AppTheme.gradientStart, location: 0.7),
-                        .init(color: AppTheme.gradientEnd, location: 1.0)
+                        .init(color: Color(hex: "#F0A882"), location: 1.0)
                     ],
                     startPoint: .top,
                     endPoint: .bottom
