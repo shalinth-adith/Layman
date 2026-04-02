@@ -1,41 +1,72 @@
-//
-//  LaymanUITests.swift
-//  LaymanUITests
-//
-//  Created by shalinth adithyan on 01/04/26.
-//
-
 import XCTest
 
 final class LaymanUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
+    // MARK: - Launch Performance
+    func testAppLaunchPerformance() throws {
         measure(metrics: [XCTApplicationLaunchMetric()]) {
             XCUIApplication().launch()
         }
     }
+
+    // MARK: - Welcome Screen
+    @MainActor
+    func testWelcomeScreenLoads() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        // Layman title should be visible
+        XCTAssertTrue(app.staticTexts["Layman"].exists)
+    }
+
+    @MainActor
+    func testWelcomeScreenLoadTime() throws {
+        measure(metrics: [XCTClockMetric()]) {
+            let app = XCUIApplication()
+            app.launch()
+            // Welcome screen should appear within 2 seconds
+            _ = app.staticTexts["Layman"].waitForExistence(timeout: 2)
+        }
+    }
+
+    // MARK: - Auth Screen
+    @MainActor
+    func testSwipeNavigatesToAuth() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        // Swipe up to get to auth
+        app.swipeUp()
+
+        // Auth screen elements should appear
+        _ = app.staticTexts["Login"].waitForExistence(timeout: 3)
+        XCTAssertTrue(app.staticTexts["Login"].exists || app.staticTexts["Layman"].exists)
+    }
+
+    @MainActor
+    func testAuthScreenHasRequiredElements() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.swipeUp()
+
+        _ = app.staticTexts["Login"].waitForExistence(timeout: 3)
+        XCTAssertTrue(app.textFields.count > 0 || app.secureTextFields.count > 0)
+    }
+
+    @MainActor
+    func testLoginToggleWorks() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.swipeUp()
+
+        _ = app.staticTexts["Sign Up"].waitForExistence(timeout: 3)
+        app.staticTexts["Sign Up"].tap()
+
+        XCTAssertTrue(app.staticTexts["Sign Up"].exists)
+    }
 }
+

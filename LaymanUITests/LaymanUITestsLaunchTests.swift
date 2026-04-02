@@ -17,6 +17,12 @@ final class LaymanUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    func testLaunchTime() throws {
+        measure(metrics: [XCTApplicationLaunchMetric(waitUntilResponsive: true)]) {
+            XCUIApplication().launch()
+        }
+    }
+
     @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
